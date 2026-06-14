@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deepul Juneja — Social Media & Performance Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   EDIT YOUR BRAND COLORS HERE
+   ============================================ */
+:root {
+  --navy:        #0B1437;   /* dark headings + footer */
+  --accent:      #2563EB;   /* primary blue — buttons, links, accents */
+  --accent-lt:   #EFF6FF;   /* light blue background tints */
+  --teal:        #0891B2;   /* secondary highlight (campaign cards) */
+  --teal-lt:     #E0F7FA;
+  --purple:      #7C3AED;   /* third highlight (pixel tracking card) */
+  --purple-lt:   #F5F3FF;
+  --bg:          #F9FAFB;   /* page background */
+  --surface:     #FFFFFF;   /* card background */
+  --border:      #E5E7EB;
+  --text:        #111827;
+  --muted:       #6B7280;
+  --dim:         #9CA3AF;
+  --dp: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --bd: 'Inter', system-ui, sans-serif;
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--bd); background: var(--bg); color: var(--text); line-height: 1; }
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ============================================
+   SCROLLING TICKER
+   ============================================ */
+.ticker-wrap { background: var(--navy); padding: 8px 0; overflow: hidden; }
+.ticker { display: flex; white-space: nowrap; }
+.ticker-track { display: flex; animation: scroll 22s linear infinite; }
+.ticker-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 2.5rem;
+  font-size: 11px; font-weight: 600; letter-spacing: .09em; color: rgba(255,255,255,.55); }
+.ticker-val { color: #fff; }
+.ticker-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav { position: sticky; top: 0; z-index: 99; height: 56px;
+  background: rgba(249,250,251,.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; }
+.nav-logo { font-family: var(--dp); font-weight: 800; font-size: .98rem;
+  color: var(--navy); letter-spacing: -.02em; }
+.nav-links { display: flex; align-items: center; gap: 1.75rem; }
+.nav-link { font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .15s; }
+.nav-link:hover { color: var(--accent); }
+.nav-cta { font-size: .8rem; font-weight: 600; padding: 7px 16px; border-radius: 7px;
+  background: var(--accent); color: #fff; border: none; cursor: pointer; font-family: inherit; transition: opacity .15s; }
+.nav-cta:hover { opacity: .88; }
+
+/* ============================================
+   HERO — SPLIT LAYOUT
+   ============================================ */
+.hero { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem 4rem;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: center; }
+
+.hero-tag { display: flex; align-items: center; gap: 8px;
+  font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.1rem; }
+.hero-tag::before { content: ''; width: 20px; height: 2px; background: var(--accent); display: block; flex-shrink: 0; }
+
+h1 { font-family: var(--dp); font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 800;
+  line-height: 1.08; color: var(--navy); letter-spacing: -.03em; margin-bottom: 1.2rem; }
+
+.hero-sub { font-size: .97rem; color: var(--muted); line-height: 1.75; max-width: 440px; margin-bottom: 2rem; }
+
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-primary { display: inline-block; padding: 10px 22px; border-radius: 8px;
+  background: var(--accent); color: #fff; font-weight: 600; font-size: .85rem;
+  font-family: inherit; border: none; cursor: pointer; transition: opacity .15s; }
+.btn-primary:hover { opacity: .88; }
+.btn-ghost { display: inline-block; padding: 10px 22px; border-radius: 8px;
+  border: 1.5px solid var(--border); color: var(--text); font-weight: 600; font-size: .85rem;
+  font-family: inherit; background: transparent; cursor: pointer; transition: border-color .15s; }
+.btn-ghost:hover { border-color: var(--accent); }
+
+/* HERO RIGHT: stat card stack */
+.hero-right { display: flex; flex-direction: column; gap: 1rem; }
+.stat-card-big { background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2.5rem 2rem; text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+.stat-card-big .num { font-family: var(--dp); font-size: 5.5rem; font-weight: 800;
+  color: var(--accent); line-height: 1; letter-spacing: -.04em; }
+.stat-card-big .lbl { font-size: .82rem; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+.stat-mini-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.stat-mini { background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.1rem; text-align: center; }
+.stat-mini .num { font-family: var(--dp); font-size: 1.5rem; font-weight: 800; color: var(--teal); }
+.stat-mini .lbl { font-size: .68rem; color: var(--muted); margin-top: 3px; }
+
+/* ============================================
+   SECTION WRAPPERS
+   ============================================ */
+.divider { height: 1px; background: var(--border); }
+.section { padding: 4rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+.section-alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem 0; }
+.section-alt-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+.sec-eye { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+h2 { font-family: var(--dp); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+  color: var(--navy); letter-spacing: -.03em; margin-bottom: 2rem; }
+
+/* ============================================
+   EXPERIENCE CARDS
+   ============================================ */
+.exp-card { background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem; margin-bottom: 1.25rem;
+  transition: border-color .2s, box-shadow .2s; }
+.exp-card:hover { border-color: #BFDBFE; box-shadow: 0 4px 24px rgba(37,99,235,.08); }
+.exp-head { display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1rem; margin-bottom: .4rem; flex-wrap: wrap; }
+.exp-co { font-family: var(--dp); font-size: 1.1rem; font-weight: 800; color: var(--navy); }
+.exp-date { font-size: .72rem; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+  background: #F3F4F6; color: var(--muted); white-space: nowrap; }
+.exp-role { font-size: .8rem; font-weight: 600; color: var(--accent); margin-bottom: 1.2rem; }
+.exp-bullets { display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.5rem; }
+.exp-b { font-size: .83rem; color: var(--muted); line-height: 1.65;
+  padding-left: 16px; position: relative; }
+.exp-b::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: .72rem; top: 3px; }
+.exp-results { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem;
+  padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.res-v { font-family: var(--dp); font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+.res-l { font-size: .68rem; color: var(--muted); margin-top: 2px; }
+
+/* ============================================
+   CAMPAIGN DATA CARDS
+   ============================================ */
+.campaigns { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.cmp-card { border: 1px solid var(--border); border-radius: 16px; padding: 1.6rem; background: var(--surface); }
+.cmp-icon { font-size: 1.5rem; margin-bottom: .85rem; }
+.cmp-title { font-family: var(--dp); font-size: .88rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+.cmp-num { font-family: var(--dp); font-size: 2.2rem; font-weight: 800; line-height: 1; margin-bottom: .25rem; }
+.cmp-sub-lbl { font-size: .72rem; color: var(--muted); margin-bottom: .7rem; }
+.cmp-detail { font-size: .75rem; color: var(--muted); line-height: 1.6; margin-bottom: .9rem; }
+.cmp-badge { display: inline-block; font-size: .62rem; font-weight: 700; letter-spacing: .07em;
+  padding: 3px 9px; border-radius: 20px; }
+
+/* ============================================
+   REEL / VIDEO SECTION
+   ============================================ */
+.reel-section { background: var(--navy); padding: 5rem 2.5rem; }
+.reel-inner { max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: center; }
+.reel-eye { font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .5rem; }
+.reel-title { font-family: var(--dp); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800;
+  color: #fff; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 1rem; }
+.reel-sub { font-size: .93rem; color: rgba(255,255,255,.6); line-height: 1.7; margin-bottom: 1.5rem; }
+.reel-badge { display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 20px; padding: 7px 16px; font-size: .75rem; color: rgba(255,255,255,.75); font-weight: 500; }
+
+/* VIDEO EMBED AREA — replace this with your Instagram embed */
+.reel-embed-area { position: relative; }
+.reel-placeholder {
+  /* ============================================
+     EDIT: Delete this entire .reel-placeholder div
+     and paste your Instagram Reel embed code here.
+     ============================================
+     HOW TO EMBED YOUR REEL:
+     1. Open your Reel on Instagram
+     2. Tap the ... (three dots) menu
+     3. Select "Embed"
+     4. Copy the embed code
+     5. Replace the .reel-placeholder div below
+        with the copied embed code
+     6. Uncomment the Instagram script at page bottom
+     ============================================ */
+  background: rgba(255,255,255,.05); border: 2px dashed rgba(255,255,255,.18);
+  border-radius: 18px; min-height: 400px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem; padding: 2rem; text-align: center; }
+.reel-placeholder-icon { font-size: 2.5rem; opacity: .5; }
+.reel-placeholder-title { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.6); }
+.reel-placeholder-sub { font-size: .75rem; color: rgba(255,255,255,.35); line-height: 1.6; }
+.reel-placeholder-code { font-family: monospace; font-size: .68rem;
+  color: rgba(255,255,255,.3); background: rgba(0,0,0,.3);
+  padding: 6px 12px; border-radius: 5px; }
+
+/* ============================================
+   SKILLS GRID
+   ============================================ */
+.skills { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.sk-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.sk-group { font-size: .67rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+.sk-items { display: flex; flex-direction: column; gap: 6px; }
+.sk-item { display: flex; align-items: center; gap: 7px; font-size: .8rem; color: var(--text); }
+.sk-dot { width: 5px; height: 5px; border-radius: 50%; background: #D1FAE5; flex-shrink: 0; }
+
+/* ============================================
+   AWARD CARD
+   ============================================ */
+.award { background: linear-gradient(135deg, #0B1437 0%, #1a2a5e 100%);
+  border-radius: 20px; padding: 2.5rem; display: flex; gap: 2rem; align-items: flex-start; }
+.award-icon { background: rgba(37,99,235,.2); border: 1px solid rgba(37,99,235,.3);
+  border-radius: 14px; padding: 1.1rem; font-size: 2rem; flex-shrink: 0; line-height: 1; }
+.award-year { font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .4rem; }
+.award-title { font-family: var(--dp); font-size: 1.25rem; font-weight: 800;
+  color: #fff; line-height: 1.3; margin-bottom: .65rem; }
+.award-desc { font-size: .86rem; color: rgba(255,255,255,.58); line-height: 1.7; }
+
+/* ============================================
+   CONTACT / FOOTER
+   ============================================ */
+.contact { background: var(--surface); border-top: 1px solid var(--border);
+  padding: 5rem 2.5rem; text-align: center; }
+.contact h2 { font-size: clamp(2rem,4vw,3rem); margin-bottom: .75rem; }
+.contact-sub { font-size: .97rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.6; }
+.contact-links { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.c-link { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 500;
+  padding: 10px 20px; border-radius: 9px; border: 1.5px solid var(--border);
+  color: var(--text); background: var(--bg); font-family: inherit;
+  transition: border-color .15s, color .15s; }
+.c-link:hover { border-color: var(--accent); color: var(--accent); }
+.contact-info { font-size: .88rem; color: var(--muted); }
+.contact-info a { color: var(--accent); font-weight: 600; }
+
+footer { background: var(--navy); padding: 1.5rem 2.5rem; text-align: center; }
+footer p { font-size: .73rem; color: rgba(255,255,255,.25); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-right { order: -1; }
+  .stat-card-big .num { font-size: 4.5rem; }
+  .campaigns { grid-template-columns: 1fr; }
+  .reel-inner { grid-template-columns: 1fr; }
+  .skills { grid-template-columns: repeat(2,1fr); }
+  .exp-results { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 600px) {
+  nav .nav-links .nav-link { display: none; }
+  .hero { padding: 3rem 1.25rem 2.5rem; }
+  .section { padding: 3rem 1.25rem; }
+  .section-alt-inner { padding: 0 1.25rem; }
+  .reel-section { padding: 3rem 1.25rem; }
+  .contact { padding: 3rem 1.25rem; }
+  .skills { grid-template-columns: 1fr; }
+  .exp-results { grid-template-columns: 1fr; }
+  .award { flex-direction: column; gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     SCROLLING TICKER — edit metrics here
+     ============================================ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">450%</span>&nbsp;Instagram growth in under 2 months</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">&#8377;0.67</span>&nbsp;Cost per link click &middot; RAAW traffic campaign</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">&#8377;0.013</span>&nbsp;Cost per engagement &middot; 42,372 engagements delivered</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">136K+</span>&nbsp;Instagram profile views in 30 days</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">3,100+</span>&nbsp;Meta Pixel PageView events &middot; first 30 days</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">7.5/10</span>&nbsp;Meta Pixel event match quality &middot; Browser + CAPI</span>
+      <!-- DUPLICATE for seamless infinite loop -->
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">450%</span>&nbsp;Instagram growth in under 2 months</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">&#8377;0.67</span>&nbsp;Cost per link click &middot; RAAW traffic campaign</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">&#8377;0.013</span>&nbsp;Cost per engagement &middot; 42,372 engagements delivered</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">136K+</span>&nbsp;Instagram profile views in 30 days</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">3,100+</span>&nbsp;Meta Pixel PageView events &middot; first 30 days</span>
+      <span class="ticker-item"><span class="ticker-dot"></span><span class="ticker-val">7.5/10</span>&nbsp;Meta Pixel event match quality &middot; Browser + CAPI</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     NAVIGATION — edit links below (marked EDIT)
+     ============================================ -->
+<nav>
+  <a class="nav-logo">Deepul Juneja</a>
+  <div class="nav-links">
+    <a href="#experience" class="nav-link">Work</a>
+    <a href="#campaigns" class="nav-link">Campaigns</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <!-- EDIT: replace # with your LinkedIn URL -->
+    <a href="#" class="nav-link" target="_blank">LinkedIn</a>
+    <!-- EDIT: replace # with your resume Google Drive / download link -->
+    <a href="#" class="nav-cta" target="_blank">Download Resume</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<div class="hero">
+  <div>
+    <div class="hero-tag">Social media &amp; performance marketing</div>
+    <h1>I build brands.<br>I run ads.<br>I grow audiences.</h1>
+    <p class="hero-sub">D2C-focused marketer with real campaign data, two brands launched from scratch, and a proven track record of turning small budgets into measurable results.</p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">View my work</a>
+      <!-- EDIT: replace # with your resume download link -->
+      <a href="#" class="btn-ghost" target="_blank">Download Resume</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card-big">
+      <div class="num">450%</div>
+      <div class="lbl">Instagram growth<br>in under 2 months</div>
+    </div>
+    <div class="stat-mini-row">
+      <div class="stat-mini">
+        <div class="num">&#8377;0.67</div>
+        <div class="lbl">Cost per click</div>
+      </div>
+      <div class="stat-mini">
+        <div class="num">136K+</div>
+        <div class="lbl">Profile views / 30d</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     WORK EXPERIENCE
+     ============================================ -->
+<div class="section" id="experience">
+  <div class="sec-eye">Experience</div>
+  <h2>What I&rsquo;ve built &amp; run</h2>
+
+  <!-- RAAW -->
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">RAAW &mdash; D2C Apparel Brand</div>
+      <div class="exp-date">Jul 2025 &ndash; Mar 2026</div>
+    </div>
+    <div class="exp-role">Founder &amp; Solo Marketing Lead</div>
+    <div class="exp-bullets">
+      <div class="exp-b">Founded and launched a D2C apparel brand end-to-end &mdash; brand identity, Shopify store with pricing anchoring, urgency triggers, and mobile-first purchase flow</div>
+      <div class="exp-b">Implemented full-funnel Meta Pixel tracking (Browser + Server-side CAPI) &mdash; 7.5/10 event match quality; tracked PageView, ViewContent, InitiateCheckout, and AddToCart events</div>
+      <div class="exp-b">Ran Traffic acquisition campaign: 1,032 link clicks at &#8377;0.67 CPC across 31,468 impressions</div>
+      <div class="exp-b">Ran Engagement campaign: 42,372 post engagements at &#8377;0.013 CPE across 102,385 impressions</div>
+      <div class="exp-b">Generated 136,200+ Instagram profile views in 30 days via organic Reels + paid visibility strategy</div>
+      <div class="exp-b">Produced 100% of brand content solo &mdash; CapCut video, Canva creatives, ChatGPT-assisted copy &mdash; consistent weekly cadence</div>
+      <div class="exp-b">Managed influencer marketing collaborations &mdash; outreach, creative briefing, coordination, and performance tracking</div>
+    </div>
+    <div class="exp-results">
+      <div><div class="res-v">1,032</div><div class="res-l">Clicks at &#8377;0.67 CPC</div></div>
+      <div><div class="res-v">42.4K</div><div class="res-l">Engagements at &#8377;0.013</div></div>
+      <div><div class="res-v">136K+</div><div class="res-l">Profile views / 30 days</div></div>
+    </div>
+  </div>
+
+  <!-- FLORAISON -->
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">Floraison Herbals &mdash; D2C Skincare Brand</div>
+      <div class="exp-date">Oct 2023 &ndash; Jun 2025</div>
+    </div>
+    <div class="exp-role">Social Media &amp; Marketing Operations</div>
+    <div class="exp-bullets">
+      <div class="exp-b">Grew brand Instagram from 200 to 1,100 followers in under 2 months &mdash; 450% increase through Reels strategy and paid promotions via Meta Ads Manager</div>
+      <div class="exp-b">Managed Meta Ads campaigns end-to-end &mdash; audience segmentation, creative setup, reach and CPM monitoring</div>
+      <div class="exp-b">Built and maintained monthly content calendars &mdash; ChatGPT-assisted copy, CapCut editing, post scheduling</div>
+      <div class="exp-b">Managed Shopify store operations &mdash; listings, pricing, banners aligned to campaign calendar</div>
+      <div class="exp-b">Conducted competitor analysis and pricing research to inform campaign targeting and messaging</div>
+    </div>
+    <div class="exp-results">
+      <div><div class="res-v">450%</div><div class="res-l">Follower growth</div></div>
+      <div><div class="res-v">&lt;2 mo</div><div class="res-l">Time to achieve</div></div>
+      <div><div class="res-v">200&rarr;1.1K</div><div class="res-l">Instagram followers</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     CAMPAIGN RESULTS
+     ============================================ -->
+<div class="section-alt" id="campaigns">
+  <div class="section-alt-inner">
+    <div class="sec-eye">Campaign Results</div>
+    <h2>The numbers behind the work</h2>
+    <div class="campaigns">
+
+      <div class="cmp-card">
+        <div class="cmp-icon">&#128200;</div>
+        <div class="cmp-title">Traffic Acquisition Campaign</div>
+        <div class="cmp-num" style="color:var(--accent)">&#8377;0.67</div>
+        <div class="cmp-sub-lbl">Cost per link click</div>
+        <div class="cmp-detail">1,032 link clicks &middot; 31,468 impressions &middot; 28,673 reach &middot; 10-day campaign &middot; RAAW apparel brand</div>
+        <div class="cmp-badge" style="background:var(--accent-lt);color:var(--accent)">META ADS MANAGER</div>
+      </div>
+
+      <div class="cmp-card">
+        <div class="cmp-icon">&#128172;</div>
+        <div class="cmp-title">Engagement &amp; Visibility Campaign</div>
+        <div class="cmp-num" style="color:var(--teal)">&#8377;0.013</div>
+        <div class="cmp-sub-lbl">Cost per engagement</div>
+        <div class="cmp-detail">42,372 engagements &middot; 97,841 reach &middot; 102,385 impressions &middot; Amplified organic content via paid distribution</div>
+        <div class="cmp-badge" style="background:var(--teal-lt);color:var(--teal)">BRAND AWARENESS</div>
+      </div>
+
+      <div class="cmp-card">
+        <div class="cmp-icon">&#128202;</div>
+        <div class="cmp-title">Full-Funnel Pixel Tracking</div>
+        <div class="cmp-num" style="color:var(--purple)">7.5/10</div>
+        <div class="cmp-sub-lbl">Event match quality (Meta)</div>
+        <div class="cmp-detail">Browser + Server-side CAPI &middot; PageView &rarr; ViewContent &rarr; InitiateCheckout &rarr; AddToCart &middot; 3,100+ PageViews in 30 days</div>
+        <div class="cmp-badge" style="background:var(--purple-lt);color:var(--purple)">META PIXEL + CAPI</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     AWARD-WINNING REEL — paste your embed here
+     ============================================ -->
+<div class="reel-section">
+  <div class="reel-inner">
+    <div>
+      <div class="reel-eye">Award-Winning Work</div>
+      <div class="reel-title">Rare Rabbit<br>Gallardo Social<br>Ruler Award</div>
+      <p class="reel-sub">Won the weekly prize at Unstop&rsquo;s national Social Ruler competition &mdash; selected for best AI-produced cinematic Instagram Reel built entirely with free tools. Judged by the Rare Rabbit brand team.</p>
+      <div class="reel-badge">&#127942; Unstop &middot; Rare Rabbit &middot; 2025</div>
+    </div>
+
+    <!-- ==================================================
+         EDIT: REPLACE THIS ENTIRE div.reel-embed-area
+         WITH YOUR INSTAGRAM REEL EMBED CODE.
+
+         HOW TO:
+         1. Open your Reel on Instagram
+         2. Tap the ... menu → "Embed"
+         3. Copy the <blockquote> embed code
+         4. Delete everything between the comments below
+         5. Paste your copied embed code in its place
+         6. Uncomment the script tag at the bottom
+         ================================================== -->
+   <div class="reel-embed-area" style="display:flex;justify-content:center;">
+
+  <video
+      controls      
+      muted
+      playsinline
+      style="
+        width:100%;
+        max-width:420px;
+        border-radius:18px;
+        box-shadow:0 15px 40px rgba(0,0,0,.35);
+      ">
+
+      <source src="Gallardo-reel.mp4" type="video/mp4">
+
+  </video>
+
+</div>
+</div>
+
+  </div>
+</div>
+
+<!-- ============================================
+     SKILLS
+     ============================================ -->
+<div class="section" id="skills">
+  <div class="sec-eye">Skills &amp; Tools</div>
+  <h2>What I work with</h2>
+  <div class="skills">
+    <div class="sk-card">
+      <div class="sk-group">Paid Advertising</div>
+      <div class="sk-items">
+        <div class="sk-item"><div class="sk-dot"></div>Meta Ads Manager</div>
+        <div class="sk-item"><div class="sk-dot"></div>Meta Pixel + CAPI</div>
+        <div class="sk-item"><div class="sk-dot"></div>Audience targeting</div>
+        <div class="sk-item"><div class="sk-dot"></div>A/B creative testing</div>
+        <div class="sk-item"><div class="sk-dot"></div>Funnel event tracking</div>
+        <div class="sk-item"><div class="sk-dot"></div>Google Ads</div>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-group">Social &amp; Content</div>
+      <div class="sk-items">
+        <div class="sk-item"><div class="sk-dot"></div>Instagram organic growth</div>
+        <div class="sk-item"><div class="sk-dot"></div>Reels strategy</div>
+        <div class="sk-item"><div class="sk-dot"></div>Content calendar management</div>
+        <div class="sk-item"><div class="sk-dot"></div>CapCut (video editing)</div>
+        <div class="sk-item"><div class="sk-dot"></div>Canva (static creatives)</div>
+        <div class="sk-item"><div class="sk-dot"></div>ChatGPT (AI-assisted copy)</div>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-group">Analytics</div>
+      <div class="sk-items">
+        <div class="sk-item"><div class="sk-dot"></div>Google Analytics 4 (GA4)</div>
+        <div class="sk-item"><div class="sk-dot"></div>Meta Business Suite</div>
+        <div class="sk-item"><div class="sk-dot"></div>Instagram Insights</div>
+        <div class="sk-item"><div class="sk-dot"></div>Full-funnel event tracking</div>
+        <div class="sk-item"><div class="sk-dot"></div>Campaign performance reporting</div>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-group">E-commerce &amp; Web</div>
+      <div class="sk-items">
+        <div class="sk-item"><div class="sk-dot"></div>Shopify (store + CRO)</div>
+        <div class="sk-item"><div class="sk-dot"></div>WordPress</div>
+        <div class="sk-item"><div class="sk-dot"></div>Pricing anchoring</div>
+        <div class="sk-item"><div class="sk-dot"></div>Urgency triggers</div>
+        <div class="sk-item"><div class="sk-dot"></div>Mobile-first UX</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     AWARD
+     ============================================ -->
+<div class="section">
+  <div class="sec-eye">Recognition</div>
+  <h2>Award</h2>
+  <div class="award">
+    <div class="award-icon">&#127942;</div>
+    <div>
+      <div class="award-year">2025 &middot; Unstop &middot; National Competition</div>
+      <div class="award-title">Rare Rabbit Gallardo Social Ruler Award &mdash; Weekly Prize Winner</div>
+      <div class="award-desc">Selected for best AI-produced cinematic Instagram Reel built entirely with free tools. Competed nationally and judged by the Rare Rabbit brand team. Demonstrated end-to-end AI video production: product imagery &rarr; image-to-video pipeline &rarr; CapCut editing &rarr; colour grading matched to brand palette.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     CONTACT — edit all links marked EDIT below
+     ============================================ -->
+<div class="contact" id="contact">
+  <h2>Let&rsquo;s work together</h2>
+  <p class="contact-sub">Open to Social Media Manager and Performance Marketing roles at agencies and D2C brands.<br>Available for full-time, internship, and freelance engagements.</p>
+  <div class="contact-links">
+    <!-- EDIT: replace # with your LinkedIn profile URL -->
+    <a href="https://www.linkedin.com/in/deepul-juneja-78027427b/" class="c-link" target="_blank">LinkedIn</a>
+    <!-- EDIT: replace # with your portfolio URL (or remove if this IS your portfolio) -->
+    <a href="https://drive.google.com/file/d/1oXtkt1kR9NjaT8Jd6pbIagOxbEDWZHMb/view" class="c-link" target="_blank">Portfolio</a>
+    <!-- EDIT: replace # with your RAAW Instagram URL -->
+    <a href="https://www.instagram.com/raaw.official/" class="c-link" target="_blank">RAAW Instagram</a>
+    <!-- EDIT: replace # with your resume download or Google Drive link -->
+    <a href="#" class="c-link" target="_blank">Download Resume</a>
+  </div>
+  <div class="contact-info">
+    <!-- EDIT: update email and phone if needed -->
+    <a href="mailto:junejadeepul@gmail.com">junejadeepul@gmail.com</a>
+    &nbsp;&middot;&nbsp; +91 98965 28336
+  </div>
+</div>
+
+<footer>
+  <p>Deepul Juneja &middot; Social Media &amp; Performance Marketing &middot; 2026</p>
+</footer>
+
+</body>
+</html>
